@@ -20,6 +20,9 @@ exclude: |
   /tests/samples/.*|
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)
+  # specific and temporary modules
+  # allow xml-duplicate-record-id into this file: split xmlid to make it more readable
+  base_c/security/group.xml|
 default_language_version:
   python: python3
   node: "22.9.0"
