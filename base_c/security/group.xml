@@ -24,7 +24,7 @@
     <record id="internal_adm_grp" model="res.groups">
         <field
             name="implied_ids"
-            eval="[(4, ref('product.group_product_variant')), (4, ref('product.group_sale_pricelist')), (4, ref('product.group_stock_packaging')), (4, ref('product.group_discount_per_so_line'))]"
+            eval="[(4, ref('product.group_product_variant')), (4, ref('product.group_stock_packaging')), (4, ref('sale.group_discount_per_so_line'))]"
         />
     </record>
     <record id="internal_adm_grp" model="res.groups">
@@ -39,19 +39,13 @@
     <record id="internal_adm_grp" model="res.groups">
         <field
             name="implied_ids"
-            eval="[(4, ref('stock.group_adv_location')), (4, ref('stock.group_tracking_lot')), (4, ref('stock.group_stock_multi_locations')), (4, ref('stock.group_stock_storage_categories')), (4, ref('stock.group_warning_stock'))]"
+            eval="[(4, ref('stock.group_adv_location')), (4, ref('stock.group_tracking_lot')), (4, ref('stock.group_stock_multi_locations')), (4, ref('stock.group_warning_stock'))]"
         />
     </record>
     <record id="internal_adm_grp" model="res.groups">
         <field
             name="implied_ids"
             eval="[(4, ref('purchase.group_warning_purchase'))]"
-        />
-    </record>
-    <record id="internal_adm_grp" model="res.groups">
-        <field
-            name="implied_ids"
-            eval="[(4, ref('sale_stock.group_display_incoterm'))]"
         />
     </record>
 </odoo>
