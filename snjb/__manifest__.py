@@ -1,6 +1,6 @@
 {
-    "name": "Base custom",
-    "summary": "Base custom: minimal with mainly depends on Odoo core",
+    "name": "SNJB",
+    "summary": "SNJB",
     "category": "Misc",
     "author": "Akretion",
     "license": "AGPL-3",
@@ -10,9 +10,9 @@
         "l10n_fr",  # better to primarly load this instead of 'account'
         "purchase",
         "sale_management",
-        "sale_stock",
+        "stock",
     ],
-    "data": [],
+    "data": ["views/partner.xml"],
     "demo": [
         "demo/demo.xml",
     ],
