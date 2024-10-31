@@ -12,7 +12,6 @@ class DfSource(models.Model):
         res = super()._get_test_file_paths()
         res.update({
             "migr": {
-                "relative_path": "data/files",
                 "xmlid": "migr.contact",
             }
         })
@@ -33,13 +32,8 @@ class DbConfig(models.Model):
 class DfProcessWiz(models.TransientModel):
     _inherit = "df.process.wiz"
 
-    def _get_rebellious_fields(self):
-        res = super()._get_rebellious_fields()
-        res.update({"res.partner": ["vat"]})
-        return res
-
-    def _process_rebellious_fields(self, record, rebellious):
-        super()._process_rebellious_fields(record, rebellious)
+    def _process_touchy_fields(self, record, rebellious):
+        super()._process_touchy_fields(record, rebellious)
         for key in rebellious:
             try:
                 record[key] = rebellious[key]
@@ -48,3 +42,12 @@ class DfProcessWiz(models.TransientModel):
                 # self.env["field.log"].create(vals)
                 logger.warning(f"\n\n\n\n\nPb here {rebellious[key]}")
                 continue
+
+
+class ModelMap(models.Model):
+    _inherit = "model.map"
+
+    def _get_touchy_fields_to_import(self):
+        res = super()._get_touchy_fields_to_import()
+        res.update({"res.partner": ["vat"]})
+        return res
