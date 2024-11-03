@@ -8,8 +8,8 @@ logger = logging.getLogger(__name__)
 class DfSource(models.Model):
     _inherit = "df.source"
 
-    def _get_test_file_paths(self):
-        res = super()._get_test_file_paths()
+    def _get_modules_w_df_files(self):
+        res = super()._get_modules_w_df_files()
         res.update({
             "migr": {
                 "xmlid": "migr.contact",

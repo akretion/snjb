@@ -12,7 +12,10 @@
         "sale_management",
         "stock",
     ],
-    "data": ["views/partner.xml"],
+    "data": [
+        "views/partner.xml",
+        "views/product.xml",
+    ],
     "demo": [
         "demo/demo.xml",
     ],
