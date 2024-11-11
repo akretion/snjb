@@ -49,5 +49,5 @@ class ModelMap(models.Model):
 
     def _get_touchy_fields_to_import(self):
         res = super()._get_touchy_fields_to_import()
-        res.update({"res.partner": ["vat"]})
+        res.update({"res.partner": ["vat"], "product.product": ["barcode"]})
         return res
