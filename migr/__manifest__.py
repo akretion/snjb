@@ -7,9 +7,11 @@
         "polars_db_schema",
         "l10n_fr_account",
         "record_field_log",
+        "snjb",
     ],
     "data": [
         "data/db_config.xml",
+        "data/model_map.xml",
     ],
     "installable": True,
 }

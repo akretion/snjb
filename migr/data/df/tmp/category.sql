@@ -1,4 +1,4 @@
--- {'model': 'product.category', 'db_conf': 'SNJB', 'xmlid_prefix': 'cat-'}
+--{'model_code': 'Categories', 'db_conf': 'SNJB', 'name': 'Categories', 'xmlid_prefix': 'cat-'}
 SELECT CONCAT('cat', '-', cl_no) AS id, 
 cl_intitule AS name
 , IIF (cl_noparent > 0, CONCAT('cat', '-', CAST(cl_noparent AS varchar)), '') AS 'parent_id'

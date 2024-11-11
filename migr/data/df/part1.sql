@@ -1,7 +1,8 @@
--- {'code': 'partner', 'db_conf': 'SNJB', 'xmlid_prefix': 'societe'}
+-- {'model_code': 'partner_import', 'db_conf': 'SNJB', 'name': 'partner1', 'sequence': 1}
 SELECT CONCAT('societe', CT_Num) AS id, CT_Intitule AS name
+-- {'model_code': 'partner_import', 'db_conf': 'SNJB', 'name': 'Main partners', xmlid_prefix': 'societe'}
  , CT_Adresse AS street, CT_Complement AS street2, CT_CodePostal AS zip, CT_Ville AS city
- --, CT_Pays AS country_id
+ , CT_Pays AS country
  --, CT_Identifiant AS vat
  , CT_Commentaire AS comment, IIF (CT_Sommeil=0, 1, 0) AS active
  , CT_Telephone AS phone, 1 AS is_company

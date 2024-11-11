@@ -10,13 +10,14 @@ class DfSource(models.Model):
 
     def _get_modules_w_df_files(self):
         res = super()._get_modules_w_df_files()
-        res.update({
-            "migr": {
-                "xmlid": "migr.contact",
+        res.update(
+            {
+                "migr": {
+                    "xmlid": "migr.contact",
+                }
             }
-        })
+        )
         return res
-
 
 
 class DbConfig(models.Model):
@@ -26,7 +27,6 @@ class DbConfig(models.Model):
         df = super()._filter_df(df)
         # TODO complete
         return df
-
 
 
 class DfProcessWiz(models.TransientModel):
