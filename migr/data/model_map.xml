@@ -11,6 +11,12 @@
         <field name="action">import</field>
     </record>
 
+    <record id="product_supplierinfo" model="model.map">
+        <field name="model_id" ref="product.model_product_supplierinfo" />
+        <field name="code">SupplierI</field>
+        <field name="action">import</field>
+    </record>
+
     <record id="product_category" model="model.map">
         <field name="model_id" ref="product.model_product_category" />
         <field name="code">Catégorie</field>

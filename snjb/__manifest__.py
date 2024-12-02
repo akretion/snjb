@@ -9,6 +9,7 @@
         "contacts",
         "l10n_fr",  # better to primarly load this instead of 'account'
         "purchase",
+        "maintenance",
         "sale_management",
         "stock",
     ],

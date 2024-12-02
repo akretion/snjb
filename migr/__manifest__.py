@@ -5,6 +5,7 @@
     "license": "GPL-3",
     "depends": [
         "polars_db_schema",
+        "polars_import_product",
         "l10n_fr_account",
         "record_field_log",
         "snjb",

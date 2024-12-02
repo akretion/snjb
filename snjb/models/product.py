@@ -1,12 +1,13 @@
 from odoo import fields, models
 from .model import c_extra
+import logging
+
+logger = logging.getLogger(__name__)
 
 
-class ResPartner(models.Model):
-    _inherit = "res.partner"
+class ProductProduct(models.Model):
+    _inherit = "product.product"
 
-    # I don't know why it doesn't work
-    lang = fields.Selection(default="fr_FR")
     extra_data = fields.Text(inverse="_inverse_extra_data")
 
     def _inverse_extra_data(self):
