@@ -9,7 +9,7 @@ class ResPartner(models.Model):
 
     lang = fields.Selection(default="fr_FR")
 
-    def _country_df_snjb_replacement(self):
+    def _country_df_sage100_replacement(self):
         return {
             "ALLEMAGNE": "Allemagne",
             "BELGIQUE": "Belgique",

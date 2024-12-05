@@ -1,4 +1,39 @@
 <odoo>
 
+<record id="field_log_list" model="ir.ui.view">
+    <field name="model">field.log</field>
+    <field name="arch" type="xml">
+        <list>
+            <field name="info"/>
+            <field name="model_id"/>
+            <field name="create_date"/>
+            <field name="res_id" optional="hide" />
+            <field name="field_id" optional="hide" />
+            <field name="kind" optional="hide" />
+        </list>
+    </field>
+</record>
+
+<record id="field_log_search" model="ir.ui.view">
+    <field name="model">field.log</field>
+    <field name="arch" type="xml">
+        <search>
+            <filter name="info"/>
+            <filter name="model"/>
+        </search>
+    </field>
+</record>
+
+<record id="field_log_action" model="ir.actions.act_window">
+    <field name="name">Field Logs</field>
+    <field name="res_model">field.log</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<menuitem
+    id="field_log_menu"
+    sequence="100"
+    parent="contacts.res_partner_menu_config"
+    action="field_log_action"/>
 
 </odoo>
