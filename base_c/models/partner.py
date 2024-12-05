@@ -8,6 +8,8 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     lang = fields.Selection(default="fr_FR")
+    invoice_sending_method = fields.Selection(default="email")
+
 
     def _country_df_sage100_replacement(self):
         return {
