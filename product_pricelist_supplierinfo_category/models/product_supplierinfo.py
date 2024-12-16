@@ -1,8 +1,14 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ProductSupplierinfo(models.Model):
     _inherit = "product.supplierinfo"
+
+    categ_margin = fields.Float(
+        "Marge Catégorie (%)", 
+        related="product_tmpl_id.categ_id.supplierinfo_margin",
+        help="Ce pourcentage de marge est appliqué si la marge au niveau du produit n'est pas remplie"
+    )
 
     def _get_supplierinfo_pricelist_price(self):
         self.ensure_one()
