@@ -16,6 +16,7 @@
     "data": [
         "security/group.xml",
         "views/partner.xml",
+        "views/category.xml",
     ],
     "demo": [
         "demo/demo.xml",

@@ -1,0 +1,13 @@
+{
+    "name": "Optional dependencies",
+    "summary": "You might live without these dependencies",
+    "version": "18.0.1.0.0",
+    "author": "Akretion",
+    "data": [],
+    "license": "GPL-3",
+    "depends": [
+        "developer_menu",
+        "partner_pricelist_search",
+    ],
+    "installable": True,
+}
