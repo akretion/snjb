@@ -24,5 +24,5 @@ class ProductProduct(models.Model):
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    secondary_cat_id = fields.Many2one(
+    categ_second_id = fields.Many2one(
         comodel_name="product.category", string="Famille")
