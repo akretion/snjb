@@ -19,3 +19,10 @@ class ProductProduct(models.Model):
             domains.append([('product_tmpl_id.seller_ids.product_code', operator, value)])
             domain = combine(domains)
         return domain
+
+
+class ProductTemplate(models.Model):
+    _inherit = "product.template"
+
+    secondary_cat_id = fields.Many2one(
+        comodel_name="product.category", string="Famille")

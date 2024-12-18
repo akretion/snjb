@@ -12,6 +12,7 @@
         "purchase",
         "sale_management",
         "sale_stock",
+        "product_second_category",
     ],
     "data": [
         "security/group.xml",
