@@ -7,6 +7,7 @@
     "license": "GPL-3",
     "depends": [
         "developer_menu",
+        "mail_layout_preview",
         "partner_pricelist_search",
     ],
     "installable": True,
