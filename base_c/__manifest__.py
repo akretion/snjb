@@ -7,12 +7,13 @@
     "version": "18.0.1.0.1",
     "depends": [
         "contacts",
+        "cost_from_supplierinfo",
         "l10n_fr",  # better to primarly load this instead of 'account'
         "maintenance",
+        "product_second_category",
         "purchase",
         "sale_management",
         "sale_stock",
-        "product_second_category",
     ],
     "data": [
         "security/group.xml",

@@ -9,6 +9,8 @@
         "developer_menu",
         "mail_layout_preview",
         "partner_pricelist_search",
+        "web_environment_ribbon",
+        "web_favicon",
     ],
     "installable": True,
 }
