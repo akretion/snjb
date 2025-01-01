@@ -1,0 +1,35 @@
+<odoo>
+
+    <record id="report_saleorder_document" model="ir.ui.view">
+        <field name="inherit_id" ref="sale.report_saleorder_document" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//div[@id='informations']//div[@t-field='doc.user_id']" position="after">
+                    <span t-field="doc.vendor_phone" />
+                </xpath>
+                <xpath expr="//th[@name='th_priceunit']" position="replace">
+                    <th name="th_priceunit" class="text-end text-nowrap">Prix Unit. HT</th>                </xpath>
+                <xpath expr="//th[@name='th_subtotal']" position="replace">
+                    <th name="th_subtotal" class="text-end">
+                        <span>Montant HT</span>
+                    </th>
+                </xpath>
+                <xpath expr="//th[@name='th_quantity']" position="before">
+                    <th name="th_quantity" class="text-end text-nowrap">Qté Livrée</th>
+                    <th name="th_quantity" class="text-end text-nowrap">Qté Facturée</th>
+                </xpath>
+                <xpath expr="//td[@name='td_quantity']" position="before">
+                    <td name="td_quantity" class="text-end text-nowrap">
+                        <span t-field="line.qty_delivered"></span>
+                    </td>
+                    <td name="td_quantity" class="text-end text-nowrap">
+                        <span t-field="line.qty_invoiced"></span>
+                    </td>
+                        <!-- <span t-field="line.product_uom">units</span> -->
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+</odoo>
