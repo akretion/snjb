@@ -16,16 +16,20 @@
                     </th>
                 </xpath>
                 <xpath expr="//th[@name='th_quantity']" position="before">
-                    <th name="th_quantity" class="text-end text-nowrap">Qté Livrée</th>
-                    <th name="th_quantity" class="text-end text-nowrap">Qté Facturée</th>
+                    <t t-if="doc.state in ('sale', 'cancel')">
+                        <th name="th_quantity" class="text-end text-nowrap">Qté Livrée</th>
+                        <th name="th_quantity" class="text-end text-nowrap">Qté Facturée</th>
+                    </t>
                 </xpath>
                 <xpath expr="//td[@name='td_quantity']" position="before">
-                    <td name="td_quantity" class="text-end text-nowrap">
-                        <span t-field="line.qty_delivered"></span>
-                    </td>
-                    <td name="td_quantity" class="text-end text-nowrap">
-                        <span t-field="line.qty_invoiced"></span>
-                    </td>
+                    <t t-if="doc.state in ('sale', 'cancel')">
+                        <td name="td_quantity" class="text-end text-nowrap">
+                            <span t-field="line.qty_delivered"></span>
+                        </td>
+                        <td name="td_quantity" class="text-end text-nowrap">
+                            <span t-field="line.qty_invoiced"></span>
+                        </td>
+                    </t>
                         <!-- <span t-field="line.product_uom">units</span> -->
                 </xpath>
             </data>

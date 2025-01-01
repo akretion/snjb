@@ -10,7 +10,6 @@ class ResPartner(models.Model):
     lang = fields.Selection(default="fr_FR")
     invoice_sending_method = fields.Selection(default="email")
 
-
     def _country_df_sage100_replacement(self):
         return {
             "ALLEMAGNE": "Allemagne",
@@ -23,7 +22,7 @@ class ResPartner(models.Model):
             "france": "zzz",
             "France ": "zzz",
             "LES ULIS": "zzz",
-            'France   TEL 0664098015': "zzz",
+            "France   TEL 0664098015": "zzz",
             "FRANCE   TEL 0664098015": "zzz",
             "FR": "zzz",
             "Tel compta Auxerre : 03 86 94 20 00": "zzz",

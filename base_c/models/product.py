@@ -12,11 +12,13 @@ class ProductProduct(models.Model):
         # (but mainly sale order). So, systematically search on seller_ids.product_code
         # unless we got partner in context (in that case native Odoo already search
         # for the product_code in combination with the supplier, this should be enough
-        if not self.env.context.get('partner_id'):
+        if not self.env.context.get("partner_id"):
             domains = [domain]
             is_positive = operator not in expression.NEGATIVE_TERM_OPERATORS
             combine = expression.OR if is_positive else expression.AND
-            domains.append([('product_tmpl_id.seller_ids.product_code', operator, value)])
+            domains.append(
+                [("product_tmpl_id.seller_ids.product_code", operator, value)]
+            )
             domain = combine(domains)
         return domain
 
@@ -24,5 +26,4 @@ class ProductProduct(models.Model):
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    categ_second_id = fields.Many2one(
-        comodel_name="product.category", string="Famille")
+    categ_second_id = fields.Many2one(comodel_name="product.category", string="Famille")
