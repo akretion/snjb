@@ -17,6 +17,7 @@
     ],
     "data": [
         "security/group.xml",
+        "data/misc.xml",
         "views/partner.xml",
         "views/category.xml",
     ],

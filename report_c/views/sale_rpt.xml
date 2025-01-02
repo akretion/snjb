@@ -5,6 +5,11 @@
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <data>
+                <xpath expr="//span[@t-field='doc.name']/.." position="after">
+                    <t t-if="doc.picking_ref">
+                        <h1><span t-field="doc.picking_ref" /></h1>
+                    </t>
+                </xpath>
                 <xpath expr="//div[@id='informations']//div[@t-field='doc.user_id']" position="after">
                     <span t-field="doc.vendor_phone" />
                 </xpath>
@@ -15,7 +20,7 @@
                         <span>Montant HT</span>
                     </th>
                 </xpath>
-                <xpath expr="//th[@name='th_quantity']" position="before">
+                <xpath expr="//th[@name='th_quantity']" position="after">
                     <t t-if="doc.state in ('sale', 'cancel')">
                         <th name="th_quantity" class="text-end text-nowrap">Qté Livrée</th>
                         <!-- <th name="th_quantity" class="text-end text-nowrap">Qté Facturée</th> -->
