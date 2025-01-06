@@ -17,6 +17,5 @@
         "views/product_category.xml",
         "views/product_supplierinfo.xml",
     ],
-    "demo": [
-    ],
+    "demo": [],
 }

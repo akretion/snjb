@@ -7,5 +7,5 @@ class ProductCategory(models.Model):
     supplierinfo_margin = fields.Float(
         string="Marge sur prix fournisseur (%)",
         digits=(16, 2),
-        help="Si la marge du prix fournisseur n'est pas définie, celle de la catégorie sera prise en compte à la place."
+        help="Si la marge du prix fournisseur n'est pas définie, celle de la catégorie sera prise en compte à la place.",
     )
