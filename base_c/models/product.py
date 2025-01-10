@@ -12,7 +12,12 @@ class ProductProduct(models.Model):
         # (but mainly sale order). So, systematically search on seller_ids.product_code
         # unless we got partner in context (in that case native Odoo already search
         # for the product_code in combination with the supplier, this should be enough
-        if not self.env.context.get("partner_id"):
+        partner_id = self.env.context.get("partner_id", False)
+        partner = self.env["res.partner"].browse(partner_id)
+        # we try to keep native behavior as much as we can, only search for all supplier
+        # code in the given partner is not a supplier, else we only search the code
+        # for this supplier (native)
+        if not partner.supplier_rank:
             domains = [domain]
             is_positive = operator not in expression.NEGATIVE_TERM_OPERATORS
             combine = expression.OR if is_positive else expression.AND
