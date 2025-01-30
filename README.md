@@ -17,7 +17,16 @@ Clean me
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[base_c](base_c/) | 18.0.1.0.2 |  | Base custom: minimal with mainly depends on Odoo core
+[optional_c](optional_c/) | 18.0.1.0.0 |  | You might live without these dependencies
+[product_pricelist_supplierinfo_category](product_pricelist_supplierinfo_category/) | 18.0.1.0.1 |  | Allow to configure a margin for supplierinfo prices on category in case it is not set on product
+[record_field_log](record_field_log/) | 18.0.1.0.0 |  | Record field Logs
+[report_c](report_c/) | 18.0.1.0.0 |  | Reports Custom
+[sale_deliver_service_as_goods](sale_deliver_service_as_goods/) | 18.0.1.0.0 |  | Ship goods and set service products as delivered
 
 [//]: # (end addons)
 
