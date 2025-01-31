@@ -35,7 +35,6 @@ class SaleOrder(models.Model):
                 except Exception as err:
                     raise UserError(err) from err
                 if pick.state != "done":
-                    # breakpoint()  # import pdb; pdb.set_trace()
                     raise UserError("Problème sur le transfert")
             for line in rec.order_line.filtered(
                 lambda s: s.product_id.type == "service"
