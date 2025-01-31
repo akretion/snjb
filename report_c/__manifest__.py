@@ -9,5 +9,7 @@
     ],
     "data": [
         "views/sale_rpt.xml",
+        "views/invoice_report.xml",
+        "views/account_journal.xml",
     ],
 }
