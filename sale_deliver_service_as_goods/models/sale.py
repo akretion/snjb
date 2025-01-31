@@ -28,8 +28,8 @@ class SaleOrder(models.Model):
             # TODO check combo
             pick = rec.picking_ids and rec.picking_ids[0]
             if pick:
-                if pick == "waiting":
-                    pick.action_assign()
+                if pick.state == "waiting":
+                    res = pick.action_assign()
                 try:
                     pick.with_context(skip_sms=True).button_validate()
                 except Exception as err:
