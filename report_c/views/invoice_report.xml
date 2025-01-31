@@ -5,13 +5,13 @@
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='customer_code']" position="attributes">
-                <attribute name="style">visibility: hidden;</attribute>
+                <attribute name="t-if">False</attribute>
             </xpath>
             <xpath expr="//div[@name='reference']" position="attributes">
-                <attribute name="style">visibility: hidden;</attribute>
+                <attribute name="t-if">False</attribute>
             </xpath>
             <xpath expr="//div[@name='operation_type']" position="attributes">
-                <attribute name="style">visibility: hidden;</attribute>
+                <attribute name="t-if">False</attribute>
             </xpath>
             <xpath expr="//div[@name='customer_code']" position="after">
                 <div class="col" t-if="o.preferred_payment_method_line_id" name="payment_mode">
