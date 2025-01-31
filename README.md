@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [optional_c](optional_c/) | 18.0.1.0.0 |  | You might live without these dependencies
 [product_pricelist_supplierinfo_category](product_pricelist_supplierinfo_category/) | 18.0.1.0.1 |  | Allow to configure a margin for supplierinfo prices on category in case it is not set on product
 [record_field_log](record_field_log/) | 18.0.1.0.0 |  | Record field Logs
-[report_c](report_c/) | 18.0.1.0.0 |  | Reports Custom
+[report_c](report_c/) | 18.0.1.0.1 |  | Reports Custom
 [sale_deliver_service_as_goods](sale_deliver_service_as_goods/) | 18.0.1.0.0 |  | Ship goods and set service products as delivered
 
 [//]: # (end addons)
