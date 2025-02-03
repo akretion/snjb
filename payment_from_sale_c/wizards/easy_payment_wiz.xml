@@ -6,7 +6,7 @@
             <form>
                 <group name="main">
                     <group>
-                        <field name="payment_method_line_id" widget="selection" domain="payment_domain"/>
+                        <field name="payment_method_line_id" widget="radio" domain="payment_domain"/>
                         <field name="payment_domain" invisible="1" />
                         <field name="amount" />
                         <field name="company_id" invisible="1" />

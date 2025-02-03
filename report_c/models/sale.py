@@ -11,8 +11,10 @@ class SaleOrder(models.Model):
     def _compute_shipping_ref_no_picking(self):
         for rec in self:
             shipping_ref = False
-            if rec.state == 'sale' and not rec.picking_ids:
-                not_shipped = [x for x in rec.order_line if x.product_uom_qty > x.qty_delivered]
+            if rec.state == "sale" and not rec.picking_ids:
+                not_shipped = [
+                    x for x in rec.order_line if x.product_uom_qty > x.qty_delivered
+                ]
                 if not not_shipped:
                     shipping_ref = rec.name
             rec.shipping_ref_no_picking = shipping_ref
