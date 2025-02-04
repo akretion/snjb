@@ -1,9 +1,10 @@
 [project]
 name = "odoo-addons-akretion-snjb"
-version = "18.0.20250130.0"
+version = "18.0.20250204.0"
 dependencies = [
     "odoo-addon-base_c==18.0.*",
     "odoo-addon-optional_c==18.0.*",
+    "odoo-addon-payment_from_sale_c==18.0.*",
     "odoo-addon-product_pricelist_supplierinfo_category==18.0.*",
     "odoo-addon-record_field_log==18.0.*",
     "odoo-addon-report_c==18.0.*",
