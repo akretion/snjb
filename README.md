@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [base_c](base_c/) | 18.0.1.0.2 |  | Base custom: minimal with mainly depends on Odoo core
 [optional_c](optional_c/) | 18.0.1.0.0 |  | You might live without these dependencies
+[payment_from_sale_c](payment_from_sale_c/) | 18.0.1.0.0 |  | Custom quick payment from sale
 [product_pricelist_supplierinfo_category](product_pricelist_supplierinfo_category/) | 18.0.1.0.1 |  | Allow to configure a margin for supplierinfo prices on category in case it is not set on product
 [record_field_log](record_field_log/) | 18.0.1.0.0 |  | Record field Logs
 [report_c](report_c/) | 18.0.1.0.1 |  | Reports Custom
