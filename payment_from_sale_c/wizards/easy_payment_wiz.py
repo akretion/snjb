@@ -2,20 +2,17 @@ from odoo import _, api, models, fields
 from odoo.exceptions import UserError
 
 
-class EasyPaymentWiz(models.TransientModel):
-    _name = "easy.payment.wiz"
-    _description = "Easy payment from sale"
+class EasyPaymentAbstract(models.AbstractModel):
+    _name = "easy.payment.abstract"
+    _description = "Easy payment mixin"
+    _rec_name = "payment_method_line_id"
 
     payment_method_line_id = fields.Many2one(
-        comodel_name="account.payment.method.line", string="Payment", required=True
+        comodel_name="account.payment.method.line", string="Payment"
     )
     payment_domain = fields.Binary(
         compute="_compute_payment_domain", help="Dynamic domain used for any field"
     )
-    company_id = fields.Many2one(comodel_name="res.company", required=True)
-    amount = fields.Float(readonly=True)
-    currency_id = fields.Many2one(comodel_name="res.currency")
-    communication = fields.Char(string="Mémo")
     payment_date = fields.Date(string="Date", default=fields.Date.today())
 
     @api.depends("company_id")
@@ -24,6 +21,20 @@ class EasyPaymentWiz(models.TransientModel):
             rec.payment_domain = [
                 ("id", "in", self.company_id.quick_payment_method_ids.ids)
             ]
+
+
+class EasyPaymentWiz(models.TransientModel):
+    _name = "easy.payment.wiz"
+    _inherit = "easy.payment.abstract"
+    _description = "Easy payment from sale"
+
+    company_id = fields.Many2one(comodel_name="res.company", required=True)
+    amount = fields.Float(readonly=True)
+    due = fields.Float(compute="_compute_due", readonly=True)
+    currency_id = fields.Many2one(comodel_name="res.currency")
+    line_ids = fields.One2many(
+        comodel_name="easy.payment.line.wiz", inverse_name="easy_payment_id"
+    )
 
     @api.model
     def default_get(self, fields_list):
@@ -34,15 +45,24 @@ class EasyPaymentWiz(models.TransientModel):
         res["amount"] = sale.amount_total
         return res
 
+    @api.depends("line_ids.amount", "amount")
+    def _compute_due(self):
+        for rec in self:
+            rec.due = rec.amount - sum(rec.line_ids.mapped("amount"))
+
     def invoice_and_pay(self):
         self.ensure_one()
+        if not self.payment_method_line_id and self.line_ids and self.due:
+            raise UserError("La somme des paiements est insufisante")
+        if not self.payment_method_line_id and not self.line_ids:
+            raise UserError("Veuillez sélectionner un paiement.")
         sale = self.env["sale.order"].browse(self._context.get("active_id"))
         so_context = {
             "active_model": "sale.order",
             "active_ids": [sale.id],
             "active_id": sale.id,
-            # 'default_journal_id': self.company_id.default_journal_sale.id,
         }
+        # invoice creation
         payment_params = {
             "advance_payment_method": "delivered",
             "amount": self.amount,
@@ -61,22 +81,42 @@ class EasyPaymentWiz(models.TransientModel):
                 + f"montant vendu {self.amount} !\n"
                 + "Faites l'opération manuellement et idenitifiez la cause !"
             )
-        payment_vals = {
-            "journal_id": self.payment_method_line_id.journal_id.id,
-            "payment_method_line_id": self.payment_method_line_id.id,
-            "payment_date": self.payment_date,
-            "group_payment": True,
-            "amount": self.amount,
-            "currency_id": sale.currency_id.id,
-        }
-        payments = (
-            self.env["account.payment.register"]
-            .with_context(active_model="account.move", active_ids=[invoice.id])
-            .create(payment_vals)
-            ._create_payments()
-        )
-        assert payments
-        payments.message_post(body="Validated")
-        sale.message_post(body=_("Payment %s", payments._get_html_link()))
+        # payment management
+        if self.payment_method_line_id:
+            pay_vals_list = [
+                {
+                    "journal_id": self.payment_method_line_id.journal_id.id,
+                    "payment_method_line_id": self.payment_method_line_id.id,
+                    "payment_date": self.payment_date,
+                    "group_payment": True,
+                    "amount": self.amount,
+                    "currency_id": sale.currency_id.id,
+                }
+            ]
+        else:
+            vals = {
+                "payment_date": self.payment_date,
+                "group_payment": True,
+                "currency_id": sale.currency_id.id,
+            }
+            pay_vals_list = []
+            for pay in self.line_ids:
+                payment_vals = {
+                    "journal_id": pay.payment_method_line_id.journal_id.id,
+                    "payment_method_line_id": pay.payment_method_line_id.id,
+                    "amount": pay.amount,
+                }
+                payment_vals.update(vals)
+                pay_vals_list.append(payment_vals)
+        payments = self.env["account.payment"]
+        for pay in pay_vals_list:
+            payments |= (
+                self.env["account.payment.register"]
+                .with_context(active_model="account.move", active_ids=[invoice.id])
+                .create(pay)
+                ._create_payments()
+            )
+        if payments and len(payments) == 1:
+            sale.message_post(body=_("Payment %s", payments._get_html_link()))
         # action to view invoice
         return res

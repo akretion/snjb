@@ -6,8 +6,8 @@
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_cancel']" position="before">
                 <button name="ui_ship_all_products_c" string="🚚 Livrer" type="object" 
-                    invisible="not available_case" 
-                    title="Livre directement tous les produits de la vente quand cela est possible" />
+                    invisible="not(state in ('draft', 'sent') or available_case)" 
+                    title="Livre directement tous les produits de la vente dans les cas simples" />
             </xpath>
         </field>
     </record>

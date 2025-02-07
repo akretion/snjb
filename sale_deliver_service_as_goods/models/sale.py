@@ -26,10 +26,26 @@ class SaleOrder(models.Model):
     def ui_ship_all_products_c(self):
         for rec in self:
             # TODO check combo
+            if rec.state in ("draft", "sent"):
+                rec.action_confirm()
+            if not rec.available_case:
+                return {
+                    "type": "ir.actions.client",
+                    "tag": "display_notification",
+                    "params": {
+                        "title": "Produits à livrer",
+                        "type": "warning",
+                        "message": """Les conditions ne sont pas réunies pour livrer
+                            les produits automatiquement.\nVous devez effectuer les 
+                            opérations manuellement.""",
+                        "sticky": True,
+                        "next": {"type": "ir.actions.client", "tag": "soft_reload"},
+                    },
+                }
             pick = rec.picking_ids and rec.picking_ids[0]
             if pick:
                 if pick.state == "waiting":
-                    res = pick.action_assign()
+                    pick.action_assign()
                 try:
                     pick.with_context(skip_sms=True).button_validate()
                 except Exception as err:
