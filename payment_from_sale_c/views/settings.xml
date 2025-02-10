@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <xpath expr="//setting[@id='account_batch_payment']" position="after">
                 <setting id="quick_payment_method" string="Quick Sale Payments" help="Contacter akretion avant de modifier" />
-                <field name="quick_payment_method_ids" widget="many2many" context="{'easy_payment_config': '1'}" />
+                <field name="quick_payment_method_ids" widget="many2many"  />
             </xpath>
         </field>
     </record>

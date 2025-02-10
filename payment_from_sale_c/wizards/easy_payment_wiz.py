@@ -45,7 +45,7 @@ class EasyPaymentWiz(models.TransientModel):
         res["amount"] = sale.amount_total
         return res
 
-    @api.depends("line_ids.amount", "amount")
+    @api.depends("line_ids", "line_ids.amount", "amount")
     def _compute_due(self):
         for rec in self:
             rec.due = rec.amount - sum(rec.line_ids.mapped("amount"))
@@ -53,8 +53,13 @@ class EasyPaymentWiz(models.TransientModel):
     def invoice_and_pay(self):
         self.ensure_one()
         if not self.payment_method_line_id and self.line_ids and self.due:
-            raise UserError("La somme des paiements est insufisante")
+            # Coming from view, you can't dive here: kept for api case
+            raise UserError(
+                f"La somme des paiements devrait être de '{self.due}' au "
+                f"lieu de '{sum(self.line_ids.mapped('amount'))}'"
+            )
         if not self.payment_method_line_id and not self.line_ids:
+            # Coming from view, you can't dive here: kept for api case
             raise UserError("Veuillez sélectionner un paiement.")
         sale = self.env["sale.order"].browse(self._context.get("active_id"))
         so_context = {

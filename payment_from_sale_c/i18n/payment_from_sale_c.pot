@@ -27,6 +27,11 @@ msgid "Authorize quick payment"
 msgstr ""
 
 #. module: payment_from_sale_c
+#: model_terms:ir.ui.view,arch_db:payment_from_sale_c.easy_payment_wiz_form
+msgid "Cancel"
+msgstr ""
+
+#. module: payment_from_sale_c
 #: model:ir.model,name:payment_from_sale_c.model_res_company
 msgid "Companies"
 msgstr ""
