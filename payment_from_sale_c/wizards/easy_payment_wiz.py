@@ -77,9 +77,9 @@ class EasyPaymentWiz(models.TransientModel):
             .with_context(so_context)
             .create(payment_params)
         )
-        res = downpayment.create_invoices()
+        res = downpayment.sudo().create_invoices()
         invoice = self.env["account.move"].browse(res.get("res_id"))
-        invoice.action_post()
+        invoice.sudo().action_post()
         if invoice.amount_total != self.amount:
             raise UserError(
                 f"Montant facturé = {invoice.amount_total} <> "
@@ -118,10 +118,17 @@ class EasyPaymentWiz(models.TransientModel):
             payments |= (
                 self.env["account.payment.register"]
                 .with_context(active_model="account.move", active_ids=[invoice.id])
+                .sudo()
                 .create(pay)
                 ._create_payments()
             )
-        if payments and len(payments) == 1:
-            sale.message_post(body=_("Payment %s", payments._get_html_link()))
+        sale.message_post(
+            body=_(
+                "Paiements: "
+                + ", ".join(
+                    [f"{x.payment_method_line_id.name}: {x.amount}" for x in payments]
+                )
+            )
+        )
         # action to view invoice
         return res

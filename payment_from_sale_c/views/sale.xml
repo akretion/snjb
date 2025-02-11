@@ -4,7 +4,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='action_cancel']" position="before">
+            <xpath expr="//button[@name='action_preview_sale_order']" position="before">
                 <field name="easy_payable" invisible="1"/>
                 <button type="action" name="%(easy_payment_wiz_action)d" invisible="not easy_payable" string="💳 Payment" />
             </xpath>
