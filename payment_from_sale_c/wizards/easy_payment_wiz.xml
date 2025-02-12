@@ -18,7 +18,8 @@
                     <group colspan="4" invisible="payment_method_line_id">
                         <field name="line_ids" nolabel="1" mode="list" >
                             <list editable="bottom" edit="1">
-                                <field name="payment_method_line_id" domain="payment_domain" required="1" />
+                                <field name="payment_method_line_id" domain="payment_domain"
+                                    required="1" options="{'no_create': 1}"/>
                                 <field name="amount" />
                                 <field name="payment_domain" column_invisible="1" />
                             </list>
@@ -26,7 +27,8 @@
                     </group>
                 </group>
                 <footer>
-                    <button string="Payer" type="object" name="invoice_and_pay" class="btn-primary" invisible="not payment_method_line_id and due" />
+                    <button string="Payer" type="object" name="invoice_and_pay" class="btn-primary"
+                        invisible="not payment_method_line_id and due" />
                     <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
