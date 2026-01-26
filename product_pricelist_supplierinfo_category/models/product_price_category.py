@@ -10,6 +10,7 @@ class ProductPriceCategory(models.Model):
         help="Si la marge du prix fournisseur n'est pas définie,"
         "celle de la catégorie tarifaire sera prise en compte à la place.",
     )
+    categ_id = fields.Many2one(comodel="product.category")
 
     def _compute_display_name(self):
         for rec in self:
