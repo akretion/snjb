@@ -11,10 +11,12 @@
     # price_discounted)
     "depends": [
         "product_pricelist_supplierinfo_discount",
+        "product_price_category",
         "sale",
     ],
     "data": [
-        "views/product_category.xml",
+        "views/product_category.xml",  # remove
+        "views/product_price_category.xml",
         "views/product_supplierinfo.xml",
     ],
     "demo": [],
